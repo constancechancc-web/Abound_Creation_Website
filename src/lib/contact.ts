@@ -1,0 +1,6 @@
+export type ContactService = "Branding" | "Uniform Design" | "Marketing" | "Graphic Design" | "Photography" | "Videography" | "Other" | "";
+export type ContactValues = { name:string; company:string; email:string; phone:string; service:ContactService; budget:string; details:string };
+export type ContactErrors = Partial<Record<keyof ContactValues,string>>;
+export const emptyContactValues:ContactValues={name:"",company:"",email:"",phone:"",service:"",budget:"",details:""};
+export function validateContact(values:ContactValues):ContactErrors{const errors:ContactErrors={};if(!values.name.trim())errors.name="Please enter your name.";if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim()))errors.email="Please enter a valid email address.";if(!values.service)errors.service="Please choose a service.";if(!values.details.trim())errors.details="Please tell us about your project.";return errors;}
+export async function submitContact(endpoint:string,values:ContactValues):Promise<void>{if(!endpoint.trim())throw new Error("Contact form is not configured.");const response=await fetch(endpoint,{method:"POST",headers:{Accept:"application/json","Content-Type":"application/json"},body:JSON.stringify(values)});if(!response.ok)throw new Error("Unable to send your inquiry. Please try again.");}
