@@ -7,7 +7,7 @@ type ArrowLinkProps = ComponentProps<typeof Link> & {
 
 export function ArrowLink({ children, className = "", variant = "text", ...props }: ArrowLinkProps) {
   const variants = {
-    primary: "bg-brand-red text-white border border-brand-red hover:bg-black hover:border-black",
+    primary: "bg-brand-red text-white! border border-brand-red hover:bg-black hover:border-black",
     secondary: "bg-white text-black border border-black hover:bg-black hover:text-white",
     text: "hover:text-brand-red",
   };

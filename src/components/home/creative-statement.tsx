@@ -1,2 +1,1 @@
-export function CreativeStatement(){return <section className="bg-brand-red px-5 py-24 text-white md:px-[5vw] md:py-40"><p className="text-[clamp(3.5rem,9vw,10rem)] font-bold leading-[.84] tracking-[-.075em]">GOOD DESIGN<br/>GETS NOTICED.<br/><br/>GREAT DESIGN{" "}<br/>GETS REMEMBERED.</p></section>}
-
+export function CreativeStatement(){return <section className="bg-brand-red px-5 py-24 text-white md:px-[5vw] md:py-40"><p className="text-[clamp(2.85rem,9vw,10rem)] font-bold leading-[.84] tracking-[-.075em]">GOOD DESIGN<br/>GETS NOTICED.<br/><br/>GREAT DESIGN{" "}<br/>GETS REMEMBERED.</p></section>}
