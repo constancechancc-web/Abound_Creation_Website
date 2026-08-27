@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Abound Creation Website
 
-## Getting Started
+Production website for Abound Creation, built with Next.js, TypeScript and Tailwind CSS.
 
-First, run the development server:
+## Local development
+
+Requires Node.js 22.
 
 ```bash
+npm install
+copy .env.example .env.local
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `NEXT_PUBLIC_SITE_URL`: public production origin, for example `https://aboundcreation.com`.
+- `NEXT_PUBLIC_FORMSPREE_ENDPOINT`: complete Formspree endpoint, for example `https://formspree.io/f/your-form-id`.
 
-## Learn More
+The contact form displays a safe configuration message when its Formspree endpoint is absent. Do not commit `.env.local`.
 
-To learn more about Next.js, take a look at the following resources:
+## Quality commands
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm test
+npm run typecheck
+npm run lint
+npm run verify:assets
+npm run build
+npm run test:e2e
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Portfolio updates
 
-## Deploy on Vercel
+Project content lives in `src/data/projects.ts`. Each entry references local assets under `public/images/projects/<slug>/`. Run `npm run verify:assets` after changing an asset path. Service content lives in `src/data/services.ts`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The untouched supplied logo is `public/brand/abound-logo-original.jpg`. Web derivatives are in the same directory.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Railway deployment
+
+1. Create a Railway service from the GitHub repository.
+2. Add `NEXT_PUBLIC_SITE_URL` with the Railway public URL or custom domain.
+3. Add `NEXT_PUBLIC_FORMSPREE_ENDPOINT` after creating the production Formspree form.
+4. Deploy. `railway.json` runs `npm run build` and starts the optimized Next.js server with `npm run start`.
+5. Confirm `/`, `/work`, `/contact`, `/sitemap.xml`, and one case-study route after deployment.
+
+The app is stateless and requires no database or persistent volume.
