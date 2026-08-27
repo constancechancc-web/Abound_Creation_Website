@@ -1,0 +1,8 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import { AboutIntro } from "@/components/about/about-intro";
+import { Process } from "@/components/home/process";
+import { WhyAbound } from "@/components/home/why-abound";
+import { ArrowLink } from "@/components/shared/arrow-link";
+export const metadata:Metadata={title:"About — Abound Creation",description:"A creative design agency combining strategy, creativity and execution to build memorable brands."};
+export default function AboutPage(){return <><header className="px-5 pb-12 pt-20 md:px-[5vw] md:pb-20 md:pt-32"><p className="text-xs font-bold uppercase tracking-[.14em] text-brand-red">About Abound</p><h1 className="mt-6 text-[clamp(4rem,12vw,13rem)] font-bold leading-[.8] tracking-[-.08em]">DESIGN IS MORE<br/>THAN LOOKING GOOD.</h1></header><AboutIntro/><div className="grid md:grid-cols-2"><div className="relative aspect-square bg-brand-light"><Image src="/images/projects/northline-objects/catalogue.svg" alt="Editorial identity and catalogue composition" fill sizes="50vw" className="object-cover"/></div><div className="relative aspect-square bg-black"><Image src="/images/projects/after-hours-campaign/posters.svg" alt="Typographic campaign poster composition" fill sizes="50vw" className="object-cover"/></div></div><Process/><WhyAbound/><section className="px-5 py-24 md:px-[5vw] md:py-40"><h2 className="max-w-6xl text-[clamp(3.5rem,9vw,10rem)] font-bold leading-[.84] tracking-[-.075em]">GOOD IDEAS DESERVE<br/><span className="text-brand-red">BETTER DESIGN.</span></h2><ArrowLink href="/contact" variant="primary" className="mt-10">Start a project</ArrowLink></section></>}
