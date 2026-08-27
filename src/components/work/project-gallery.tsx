@@ -1,0 +1,3 @@
+import Image from "next/image";
+import type { GalleryItem } from "@/types/project";
+export function ProjectGallery({items}:{items:GalleryItem[]}){return <div className="grid gap-8 md:grid-cols-12 md:gap-y-24">{items.map((item,index)=><figure key={item.src} className={index%3===0?"md:col-span-12":index%3===1?"md:col-span-5":"md:col-span-7 md:pt-24"}><Image src={item.src} alt={item.alt} width={item.width} height={item.height} sizes="(max-width:768px) 100vw, 90vw" className="h-auto w-full"/><figcaption className="mt-3 text-xs uppercase tracking-[.08em] text-brand-gray">{item.caption??`${String(index+1).padStart(2,"0")} / ${item.alt}`}</figcaption></figure>)}</div>}
