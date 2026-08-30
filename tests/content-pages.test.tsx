@@ -19,10 +19,15 @@ describe("supporting content pages", () => {
     expect(screen.getByText("About Abound")).toHaveClass("text-brand-red");
     expect(screen.getByText("A concise supporting statement.")).toBeInTheDocument();
   });
-  it("expands all six services", () => {
-    render(<ServicesPage />);
+  it("renders six clean editorial service rows in approved order", () => {
+    const { container } = render(<ServicesPage />);
     expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
-    for (const service of ["Branding", "Uniform Design", "Marketing", "Graphic Design", "Photography", "Videography"]) expect(screen.getByRole("heading", { name: service })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1, name: /built around your brand/i })).toBeInTheDocument();
+    expect(container.querySelectorAll("[data-service-row]")).toHaveLength(6);
+    expect(screen.getAllByRole("heading", { level: 2 }).slice(0, 6).map((heading) => heading.textContent)).toEqual([
+      "Branding", "Uniform Design", "Marketing", "Graphic Design", "Photography", "Videography",
+    ]);
+    expect(screen.getByRole("link", { name: /start a project/i })).toHaveAttribute("href", "/contact");
   });
   it("explains the studio without invented facts", () => {
     render(<AboutPage />);
