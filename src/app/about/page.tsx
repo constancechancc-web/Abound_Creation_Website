@@ -1,8 +1,40 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+
 import { AboutIntro } from "@/components/about/about-intro";
 import { Process } from "@/components/home/process";
 import { WhyAbound } from "@/components/home/why-abound";
 import { ArrowLink } from "@/components/shared/arrow-link";
-export const metadata:Metadata={title:"About — Abound Creation",description:"A creative design agency combining strategy, creativity and execution to build memorable brands."};
-export default function AboutPage(){return <><header className="px-5 pb-12 pt-20 md:px-[5vw] md:pb-20 md:pt-32"><p className="text-xs font-bold uppercase tracking-[.14em] text-brand-red">About Abound</p><h1 className="mt-6 text-[clamp(4rem,12vw,13rem)] font-bold leading-[.8] tracking-[-.08em]">DESIGN IS MORE<br/>THAN LOOKING GOOD.</h1></header><AboutIntro/><div className="grid md:grid-cols-2"><div className="relative aspect-square bg-brand-light"><Image src="/images/projects/northline-objects/catalogue.svg" alt="Editorial identity and catalogue composition" fill sizes="50vw" className="object-cover"/></div><div className="relative aspect-square bg-black"><Image src="/images/projects/after-hours-campaign/posters.svg" alt="Typographic campaign poster composition" fill sizes="50vw" className="object-cover"/></div></div><Process/><WhyAbound/><section className="px-5 py-24 md:px-[5vw] md:py-40"><h2 className="max-w-6xl text-[clamp(3.5rem,9vw,10rem)] font-bold leading-[.84] tracking-[-.075em]">GOOD IDEAS DESERVE<br/><span className="text-brand-red">BETTER DESIGN.</span></h2><ArrowLink href="/contact" variant="primary" className="mt-10">Start a project</ArrowLink></section></>}
+import { InteriorPageIntro } from "@/components/shared/interior-page-intro";
+
+export const metadata: Metadata = {
+  title: "About — Abound Creation",
+  description: "A creative design agency combining strategy, creativity and execution to build memorable brands.",
+};
+
+export default function AboutPage() {
+  return <>
+    <InteriorPageIntro
+      eyebrow="About Abound"
+      title="Design is more"
+      titleAccent="than looking good."
+      description="A creative design agency combining strategy, creativity and execution to build memorable brands."
+    />
+    <AboutIntro />
+    <section aria-label="Selected studio work" className="grid gap-px bg-black/15 md:grid-cols-2">
+      <div className="relative aspect-[4/3] bg-brand-light">
+        <Image src="/images/projects/northline-objects/catalogue.svg" alt="Editorial identity and catalogue composition" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+      </div>
+      <div className="relative aspect-[4/3] bg-black">
+        <Image src="/images/projects/after-hours-campaign/posters.svg" alt="Typographic campaign poster composition" fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+      </div>
+    </section>
+    <Process variant="interior" />
+    <WhyAbound variant="interior" />
+    <section className="border-t border-black/20 px-5 py-24 md:px-[5vw] md:py-36">
+      <p className="text-xs font-bold uppercase tracking-[.14em] text-brand-red">Start a conversation</p>
+      <h2 className="mt-6 max-w-5xl text-[clamp(3.2rem,7vw,7rem)] font-medium leading-[.9] tracking-[-.065em]">Good ideas deserve <span className="text-brand-red">better design.</span></h2>
+      <ArrowLink href="/contact" variant="primary" className="mt-10">Start a project</ArrowLink>
+    </section>
+  </>;
+}

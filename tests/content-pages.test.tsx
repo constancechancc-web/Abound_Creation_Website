@@ -27,6 +27,8 @@ describe("supporting content pages", () => {
   it("explains the studio without invented facts", () => {
     render(<AboutPage />);
     expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
+    expect(screen.getByRole("heading", { level: 1, name: /design is more than looking good/i })).toBeInTheDocument();
+    expect(screen.getByText(/creative design agency combining strategy, creativity and execution/i)).toBeInTheDocument();
     expect(screen.getByAltText("Abound Creation official logo")).toBeInTheDocument();
     expect(screen.getByText(/good design should do more than attract attention/i)).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /start a project/i })).toHaveAttribute("href", "/contact");
