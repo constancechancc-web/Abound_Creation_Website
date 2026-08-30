@@ -97,3 +97,13 @@ textarea {
   .project-grid > .project-6 { grid-column: 7 / 13; margin-top: 8rem; }
 }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+
+.hero-slide {
+  transition: opacity 700ms var(--ease-out-expo);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide {
+    transition: none;
+  }
+}
