@@ -1,5 +1,43 @@
 "use client";
+
 import Image from "next/image";
 import { useState } from "react";
-import { services } from "@/data/services";
-export function ServicesPreview(){const [active,setActive]=useState(0);return <section className="px-5 py-24 md:px-[5vw] md:py-40"><div className="mb-16 grid gap-6 md:grid-cols-12"><h2 className="text-[clamp(3rem,7vw,7rem)] font-bold leading-none tracking-[-.07em] md:col-span-8">What We Do</h2><p className="max-w-md text-lg leading-7 md:col-span-4">We bring strategy, design and visual storytelling together to help brands look sharper, communicate clearer and move forward with confidence.</p></div><div className="grid gap-10 lg:grid-cols-12"><div className="lg:col-span-8">{services.map((service,index)=><article key={service.slug} className="border-t border-black last:border-b"><button type="button" aria-expanded={active===index} onClick={()=>setActive(active===index?-1:index)} onMouseEnter={()=>setActive(index)} className="grid w-full grid-cols-[48px_1fr_auto] items-center gap-3 py-5 text-left transition-colors hover:text-brand-red md:grid-cols-[70px_1fr_auto]"><span className="text-sm text-brand-red">{service.number}</span><h3 className="text-[clamp(1.8rem,4vw,4.7rem)] font-bold leading-none tracking-[-.055em]">{service.title}</h3><span className="text-xl">{active===index?"−":"+"}</span></button><div className={`grid transition-[grid-template-rows] duration-300 ${active===index?"grid-rows-[1fr]":"grid-rows-[0fr]"}`}><div className="overflow-hidden"><p className="max-w-xl pb-6 pl-12 text-brand-gray md:pl-[70px]">{service.description}</p></div></div></article>)}</div><div className="relative hidden min-h-[620px] overflow-hidden bg-brand-light lg:col-span-4 lg:block"><Image src={services[Math.max(active,0)].image} alt="" fill sizes="33vw" className="object-cover transition-opacity"/></div></div></section>}
+
+import { homeServices } from "@/data/home-services";
+
+export function ServicesPreview() {
+  const [active, setActive] = useState(0);
+  const activeService = homeServices[active];
+
+  return <section className="px-5 py-20 md:px-[5vw] md:py-28 lg:py-36">
+    <div className="mb-12 grid gap-6 md:mb-16 md:grid-cols-12">
+      <h2 className="text-[clamp(2.8rem,6vw,6rem)] font-medium leading-none tracking-[-.06em] text-brand-red md:col-span-7">What We Do</h2>
+      <p className="max-w-md text-base leading-6 md:col-span-5 md:justify-self-end">We bring strategy, design and visual storytelling together to help brands look sharper, communicate clearer and move forward with confidence.</p>
+    </div>
+
+    <div className="grid gap-10 lg:grid-cols-12">
+      <div className="lg:col-span-7">
+        {homeServices.map((service, index) => {
+          const expanded = active === index;
+          return <article key={service.title} className="border-t border-black/45 last:border-b">
+            <button type="button" aria-expanded={expanded} aria-controls={`home-service-${index}`} onClick={() => setActive(index)} onMouseEnter={() => setActive(index)} className="grid min-h-16 w-full grid-cols-[44px_1fr_44px] items-center gap-2 py-4 text-left transition-colors hover:text-brand-red md:grid-cols-[60px_1fr_44px]">
+              <span className="text-sm text-brand-red">{service.number}</span>
+              <h3 className="text-[clamp(1.65rem,3.6vw,3.8rem)] font-semibold leading-none tracking-[-.05em]">{service.title}</h3>
+              <span aria-hidden="true" className="text-center text-xl">{expanded ? "−" : "+"}</span>
+            </button>
+            <div id={`home-service-${index}`} hidden={!expanded} className="pb-6 pl-11 md:pl-[60px] lg:pb-8">
+              <p className="max-w-xl text-brand-gray">{service.description}</p>
+              <div className="relative mt-5 aspect-[4/3] overflow-hidden bg-brand-light lg:hidden">
+                <Image src={service.image} alt="" fill sizes="100vw" className="object-cover" />
+              </div>
+            </div>
+          </article>;
+        })}
+      </div>
+
+      <div className="relative hidden min-h-[540px] overflow-hidden border border-black/30 bg-brand-light lg:col-span-5 lg:block">
+        <Image key={activeService.image} src={activeService.image} alt="" fill sizes="32vw" className="object-cover" />
+      </div>
+    </div>
+  </section>;
+}
