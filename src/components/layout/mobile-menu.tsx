@@ -36,6 +36,7 @@ export function MobileMenu({ open, onClose, triggerRef }: MobileMenuProps) {
     <nav aria-label="Mobile navigation" className="flex flex-col border-t border-brand-border">
       {links.map(([label, href], index) => <Link key={href} ref={index === 0 ? firstLinkRef : undefined} href={href} onClick={onClose} className="min-h-11 border-b border-brand-border py-5 text-[clamp(2.8rem,14vw,5rem)] font-bold leading-none tracking-[-.06em] hover:text-brand-red">{label}</Link>)}
     </nav>
-    <a href={contactDetails.whatsAppUrl} target="_blank" rel="noreferrer" aria-label="Let's Talk on WhatsApp" onClick={onClose} className="inline-flex min-h-11 items-center justify-center rounded-full bg-brand-red px-6 text-sm font-bold uppercase text-white">LET&apos;S TALK</a>
+    <a href={contactDetails.whatsAppUrl} target="_blank" rel="noreferrer" aria-label="Let's Talk on WhatsApp" onClick={onClose} className="inline-flex min-h-11 items-center justify-center rounded-full bg-brand-red px-6 text-sm font-bold uppercase text-white!">LET&apos;S TALK</a>
   </div>;
 }
+

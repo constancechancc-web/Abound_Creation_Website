@@ -47,3 +47,11 @@ The untouched supplied logo is `public/brand/abound-logo-original.jpg`. Web deri
 5. Confirm `/`, `/work`, `/contact`, `/sitemap.xml`, and one case-study route after deployment.
 
 The app is stateless and requires no database or persistent volume.
+
+## Homepage slideshow
+
+The homepage rotates through six project covers every five seconds. It supports keyboard, touch, arrow, and dot navigation, pauses during interaction, and disables autoplay for reduced-motion users.
+
+## Contact details
+
+Site-wide phone, WhatsApp, email, address, map, and social URLs are defined in `src/data/contact-details.ts`.

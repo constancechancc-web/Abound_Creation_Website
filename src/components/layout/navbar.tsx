@@ -31,10 +31,11 @@ export function Navbar() {
         <nav aria-label="Primary navigation" className="hidden items-center gap-9 md:flex">
           {links.map(([label, href]) => <Link key={href} href={href} className="text-xs font-bold uppercase tracking-[.04em] transition-colors hover:text-brand-red focus-visible:text-brand-red">{label}</Link>)}
         </nav>
-        <a href={contactDetails.whatsAppUrl} target="_blank" rel="noreferrer" aria-label="Let's Talk on WhatsApp" className="hidden min-h-11 items-center rounded-full bg-brand-red px-6 text-xs font-bold uppercase tracking-[.04em] text-white transition-colors hover:bg-red-700 focus-visible:bg-red-700 md:inline-flex">LET&apos;S TALK</a>
+        <a href={contactDetails.whatsAppUrl} target="_blank" rel="noreferrer" aria-label="Let's Talk on WhatsApp" className="hidden min-h-11 items-center rounded-full bg-brand-red px-6 text-xs font-bold uppercase tracking-[.04em] text-white! transition-colors hover:bg-red-700 focus-visible:bg-red-700 md:inline-flex">LET&apos;S TALK</a>
         <button ref={triggerRef} type="button" aria-controls="mobile-menu" aria-expanded={open} aria-label={open ? "Close menu" : "Open menu"} onClick={() => setOpen((value) => !value)} className="relative z-[70] flex min-h-11 min-w-11 items-center justify-end text-xs font-bold uppercase md:hidden">{open ? "CLOSE" : "MENU"}</button>
       </div>
     </header>
     <MobileMenu open={open} onClose={close} triggerRef={triggerRef} />
   </>;
 }
+
