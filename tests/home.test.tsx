@@ -4,27 +4,24 @@ import { describe, expect, it } from "vitest";
 import Home from "@/app/page";
 
 describe("homepage", () => {
-  it("presents the complete agency story in a semantic order", () => {
+  it("follows the approved reference-led semantic story", () => {
     render(<Home />);
-    expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
-    expect(screen.getByText("Branding, design, marketing and visual storytelling for businesses ready to stand out.")).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /view our work/i })).toHaveAttribute("href", "/work");
-    expect(screen.getByRole("heading", { name: "Selected Work" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "What We Do" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "About Abound" })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: /From idea to impact/i })).toBeInTheDocument();
-    expect(screen.getByRole("heading", { name: "Why Abound?" })).toBeInTheDocument();
-    expect(screen.getByText(/Great design gets remembered/i)).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /start a project/i })).toHaveAttribute("href", "/contact");
-  });
 
-  it("shows all six services and all six projects", () => {
-    render(<Home />);
-    for (const service of ["Branding", "Uniform Design", "Marketing", "Graphic Design", "Photography", "Videography"]) {
-      expect(screen.getByRole("heading", { name: service })).toBeInTheDocument();
+    expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
+    expect(screen.getByRole("heading", { name: "Welcome to Abound Creation" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Explore More/i })).toHaveAttribute("href", "/about");
+    expect(screen.getByRole("heading", { name: "What We Do" })).toBeInTheDocument();
+    expect(screen.getByText(/Abound With/)).toHaveTextContent("Abound With Creative Idea");
+    expect(screen.getByRole("heading", { name: "From idea to impact" })).toBeInTheDocument();
+
+    for (const step of ["Consultation", "Strategize", "Schedule", "Performance Review", "Campaign Launch", "Content Creation"]) {
+      expect(screen.getByRole("heading", { name: step })).toBeInTheDocument();
     }
-    for (const project of ["Northline Objects", "Sela Dining", "Meridian Holdings", "Fieldwork Uniforms", "After Hours", "Forma Study 01"]) {
-      expect(screen.getByRole("heading", { name: project })).toBeInTheDocument();
-    }
+
+    expect(screen.getByRole("heading", { name: "Let's Build Something Great Together" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Start a Project on WhatsApp" })).toHaveAttribute("href", expect.stringContaining("wa.me/60196609102"));
+    expect(screen.queryByRole("heading", { name: "Selected Work" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("heading", { name: "Why Abound?" })).not.toBeInTheDocument();
   });
 });
+
