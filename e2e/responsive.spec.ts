@@ -15,15 +15,12 @@ for (const width of widths) {
   });
 }
 
-test("reduced-motion users do not receive reveal transitions", async ({ browser }) => {
+test("reduced-motion users do not receive slideshow autoplay", async ({ browser }) => {
   const context = await browser.newContext({ reducedMotion: "reduce" });
   const page = await context.newPage();
   await page.goto("/");
-  const reveal = page.locator(".reveal").first();
-  await expect(reveal).toBeVisible();
-  const duration = await reveal.evaluate((element) => parseFloat(getComputedStyle(element).transitionDuration));
-  expect(duration).toBeLessThanOrEqual(0.001);
+  await expect(page.getByRole("img", { name: /Northline Objects/i })).toBeVisible();
+  await page.waitForTimeout(5500);
+  await expect(page.getByRole("img", { name: /Northline Objects/i })).toBeVisible();
   await context.close();
 });
-
-
