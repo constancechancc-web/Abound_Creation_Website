@@ -3,8 +3,22 @@ import { describe, expect, it } from "vitest";
 import AboutPage from "@/app/about/page";
 import ContactPage from "@/app/contact/page";
 import ServicesPage from "@/app/services/page";
+import { InteriorPageIntro } from "@/components/shared/interior-page-intro";
 
 describe("supporting content pages", () => {
+  it("renders the shared editorial page introduction", () => {
+    render(
+      <InteriorPageIntro
+        eyebrow="About Abound"
+        title="Design is more"
+        titleAccent="than looking good."
+        description="A concise supporting statement."
+      />,
+    );
+    expect(screen.getByRole("heading", { level: 1, name: /design is more than looking good/i })).toBeInTheDocument();
+    expect(screen.getByText("About Abound")).toHaveClass("text-brand-red");
+    expect(screen.getByText("A concise supporting statement.")).toBeInTheDocument();
+  });
   it("expands all six services", () => {
     render(<ServicesPage />);
     expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
