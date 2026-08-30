@@ -6,11 +6,13 @@ import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
 
 describe("site navigation", () => {
-  it("links to every primary route", () => {
+  it("uses the reference navigation labels and WhatsApp CTA", () => {
     render(<Navbar />);
-    for (const [name, href] of [["Work", "/work"], ["Services", "/services"], ["About", "/about"], ["Contact", "/contact"]]) {
-      expect(screen.getAllByRole("link", { name: new RegExp(name, "i") }).some((link) => link.getAttribute("href") === href)).toBe(true);
+    for (const [name, href] of [["About", "/about"], ["Portfolio", "/work"], ["Services", "/services"], ["Contact Us", "/contact"]]) {
+      expect(screen.getAllByRole("link", { name }).some((link) => link.getAttribute("href") === href)).toBe(true);
     }
+    expect(screen.getByRole("link", { name: /let's talk on whatsapp/i })).toHaveAttribute("href", expect.stringContaining("wa.me/60196609102"));
+    expect(screen.getByRole("img", { name: "Abound Creation" })).toBeInTheDocument();
   });
 
   it("opens and closes the mobile menu accessibly", async () => {
@@ -32,4 +34,3 @@ describe("site navigation", () => {
     expect(screen.getByRole("link", { name: "Instagram" })).toHaveAttribute("href", "https://www.instagram.com/aboundcreation/?utm_source=ig_web_button_share_sheet");
   });
 });
-
