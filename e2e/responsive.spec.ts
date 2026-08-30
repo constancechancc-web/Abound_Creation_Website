@@ -19,8 +19,8 @@ test("reduced-motion users do not receive slideshow autoplay", async ({ browser 
   const context = await browser.newContext({ reducedMotion: "reduce" });
   const page = await context.newPage();
   await page.goto("/");
-  await expect(page.getByRole("img", { name: /Northline Objects/i })).toBeVisible();
+  await expect(page.getByRole("img", { name: /Abound With Creative Idea/i })).toBeVisible();
   await page.waitForTimeout(5500);
-  await expect(page.getByRole("img", { name: /Northline Objects/i })).toBeVisible();
+  await expect(page.getByRole("img", { name: /Abound With Creative Idea/i })).toBeVisible();
   await context.close();
 });

@@ -26,7 +26,7 @@ export function Navbar() {
     <header className={`sticky top-0 z-50 h-[76px] bg-white transition-[border-color,box-shadow] md:h-[88px] ${scrolled ? "border-b border-brand-border shadow-sm" : "border-b border-transparent"}`}>
       <div className="mx-auto flex h-full w-[min(100%-40px,1800px)] items-center justify-between md:w-[min(100%-8vw,1800px)]">
         <Link href="/" aria-label="Abound Creation home" className="relative z-50 block h-12 w-36 shrink-0 md:h-14 md:w-40">
-          <Image src="/brand/abound-logo-transparent.png" alt="Abound Creation" width={1600} height={1600} loading="eager" sizes="(min-width: 768px) 160px, 144px" className="h-full w-full object-contain object-left" />
+          <Image src="/brand/abound-horizontal-logo.jpeg" alt="Abound Creation" width={1425} height={525} loading="eager" sizes="(min-width: 768px) 160px, 144px" className="h-full w-full object-contain object-left" />
         </Link>
         <nav aria-label="Primary navigation" className="hidden items-center gap-9 md:flex">
           {links.map(([label, href]) => <Link key={href} href={href} className="text-xs font-bold uppercase tracking-[.04em] transition-colors hover:text-brand-red focus-visible:text-brand-red">{label}</Link>)}
@@ -38,4 +38,3 @@ export function Navbar() {
     <MobileMenu open={open} onClose={close} triggerRef={triggerRef} />
   </>;
 }
-

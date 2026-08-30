@@ -34,9 +34,9 @@ for (const [slug, title] of projects) {
 test("homepage slideshow and WhatsApp CTA work", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByRole("region", { name: "Featured projects" })).toBeVisible();
-  await expect(page.getByRole("img", { name: /Northline Objects/i })).toBeVisible();
+  await expect(page.getByRole("img", { name: /Abound With Creative Idea/i })).toBeVisible();
   await page.getByRole("button", { name: "Next slide" }).click();
-  await expect(page.getByRole("img", { name: /Sela Dining/i })).toBeVisible();
+  await expect(page.getByRole("img", { name: /Northline Objects/i })).toBeVisible();
   await expect(page.getByRole("link", { name: /Start a Project on WhatsApp/i })).toHaveAttribute("href", /wa\.me\/60196609102/);
 });
 
@@ -72,4 +72,3 @@ test("contact page publishes approved contact methods", async ({ page }) => {
   await expect(main.getByRole("link", { name: "013-776 6128" })).toHaveAttribute("href", "tel:+60137766128");
   await expect(main.getByRole("link", { name: "aboundcreation@gmail.com" })).toHaveAttribute("href", "mailto:aboundcreation@gmail.com");
 });
-

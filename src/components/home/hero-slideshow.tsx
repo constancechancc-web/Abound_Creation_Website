@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 
-export type HeroSlide = { src: string; alt: string; title: string };
+export type HeroSlide = { src: string; alt: string; title: string; fit?: "cover" | "contain" };
 
 const intervalMs = 5000;
 const swipeThreshold = 40;
@@ -72,7 +72,7 @@ export function HeroSlideshow({ slides }: { slides: readonly HeroSlide[] }) {
           loading={index === 0 ? "eager" : "lazy"}
           fetchPriority={index === 0 ? "high" : "auto"}
           aria-hidden={!selected}
-          className={`hero-slide object-contain ${selected ? "opacity-100" : "pointer-events-none opacity-0"}`}
+          className={`hero-slide ${slide.fit === "cover" ? "object-cover" : "object-contain"} ${selected ? "opacity-100" : "pointer-events-none opacity-0"}`}
         />;
       })}
     </div>
@@ -88,4 +88,3 @@ export function HeroSlideshow({ slides }: { slides: readonly HeroSlide[] }) {
     <p className="sr-only" aria-live="polite">Slide {active + 1} of {slides.length}: {slides[active].title}</p>
   </section>;
 }
-

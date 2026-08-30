@@ -6,11 +6,10 @@ import { ServicesPreview } from "@/components/home/services-preview";
 import { WelcomeSplit } from "@/components/home/welcome-split";
 import { projects } from "@/data/projects";
 
-const slides: HeroSlide[] = projects.map((project) => ({
-  src: project.coverImage,
-  alt: project.gallery[0].alt,
-  title: project.title,
-}));
+const slides: HeroSlide[] = [
+  { src: "/images/home/abound-cover-red.jpeg", alt: "Abound With Creative Idea red cover artwork", title: "Abound With Creative Idea", fit: "cover" },
+  ...projects.map((project) => ({ src: project.coverImage, alt: project.gallery[0].alt, title: project.title })),
+];
 
 export default function Home() {
   return <>

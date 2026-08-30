@@ -8,10 +8,12 @@ describe("homepage", () => {
     render(<Home />);
 
     expect(screen.getAllByRole("heading", { level: 1 })).toHaveLength(1);
+    expect(screen.getByRole("button", { name: "Show slide 1: Abound With Creative Idea" })).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: "Abound With Creative Idea red cover artwork" })).toBeVisible();
     expect(screen.getByRole("heading", { name: "Welcome to Abound Creation" })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Explore More/i })).toHaveAttribute("href", "/about");
     expect(screen.getByRole("heading", { name: "What We Do" })).toBeInTheDocument();
-    expect(screen.getByText(/Abound With/)).toHaveTextContent("Abound With Creative Idea");
+    expect(screen.getAllByText(/Abound With/).some((element) => element.textContent === "Abound With Creative Idea")).toBe(true);
     expect(screen.getByRole("heading", { name: "From idea to impact" })).toBeInTheDocument();
 
     for (const step of ["Consultation", "Strategize", "Schedule", "Performance Review", "Campaign Launch", "Content Creation"]) {
