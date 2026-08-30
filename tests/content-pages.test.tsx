@@ -39,7 +39,10 @@ describe("supporting content pages", () => {
     expect(screen.getByRole("link", { name: /start a project/i })).toHaveAttribute("href", "/contact");
   });
   it("publishes the approved contact methods", () => {
-    render(<ContactPage />);
+    const { container } = render(<ContactPage />);
+    expect(screen.getByRole("heading", { level: 1, name: /let's talk/i })).toBeInTheDocument();
+    expect(container.querySelector("[data-contact-layout]")).toHaveClass("xl:grid-cols-12");
+    expect(container.querySelector("[data-contact-form-panel]")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "019-660 9102" })).toHaveAttribute("href", "tel:+60196609102");
     expect(screen.getByRole("link", { name: "013-776 6128" })).toHaveAttribute("href", "tel:+60137766128");
     expect(screen.getByRole("link", { name: "aboundcreation@gmail.com" })).toHaveAttribute("href", "mailto:aboundcreation@gmail.com");
