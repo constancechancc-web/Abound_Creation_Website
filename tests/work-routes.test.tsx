@@ -10,9 +10,14 @@ describe("work routes", () => {
     expect(generateStaticParams()).toEqual(projects.map((project) => ({ slug: project.slug })));
   });
 
-  it("renders all projects on the work index", () => {
-    render(<WorkPage />);
-    for (const project of projects) expect(screen.getByRole("heading", { name: project.title })).toBeInTheDocument();
+  it("renders the editorial portfolio index without changing project data", () => {
+    const { container } = render(<WorkPage />);
+    expect(screen.getByRole("heading", { level: 1, name: "Portfolio" })).toBeInTheDocument();
+    expect(container.querySelector(".project-grid")).toHaveClass("lg:grid-cols-2");
+    expect(container.querySelectorAll(".project-grid article")).toHaveLength(projects.length);
+    for (const project of projects) {
+      expect(screen.getByRole("link", { name: new RegExp(project.title) })).toHaveAttribute("href", `/work/${project.slug}`);
+    }
   });
 
   it("renders a complete case study", async () => {
